@@ -1,0 +1,46 @@
+# Example of using variables in expressions
+x = 5
+y = 3
+
+# Arithmetic operations
+sum_result = x + y       # Adds x and y
+difference = x - y       # Subtracts y from x
+product = x * y          # Multiplies x and y
+quotient = x / y         # Divides x by y (returns a float)
+integer_quotient = x // y  # Divides x by y (returns an integer)
+remainder = x % y        # Returns the remainder of x divided by y
+
+# Displaying variables
+print("Sum:", sum_result)
+print("Difference:", difference)
+print("Product:", product)
+print("Quotient:", quotient)
+print("Integer Quotient:", integer_quotient)
+print("Remainder:", remainder)
+# Casting examples
+x = 10      # Integer
+y = 3.14    # Float
+z = "100"   # String
+
+# Converting float to integer
+x_int = int(y)
+print(x_int)  # Output: 3
+
+# Converting string to integer
+z_int = int(z)
+print(z_int)  # Output: 100
+
+# Converting integer to string
+x_str = str(x)
+print(x_str)  # Output: "10"
+# Program to calculate the area of a rectangle
+
+# Define the dimensions of the rectangle
+length = 10
+width = 5
+
+# Calculate the area
+area = length * width
+
+# Display the result
+print("The area of the rectangle is:", area)

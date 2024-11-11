@@ -1,0 +1,46 @@
+if condition:
+    # Code block executed if condition is True
+    # Statements inside the if block
+else:
+    # Code block executed if condition is False
+    # Statements inside the else block
+# Program to check if a number is positive, negative, or zero
+number = int(input("Enter a number: "))
+
+if number > 0:
+    print("The number is positive.")
+elif number < 0:
+    print("The number is negative.")
+else:
+    print("The number is zero.")
+# Program to check if a number is within a specific range
+number = int(input("Enter a number: "))
+
+if number >= 0:
+    if number <= 100:
+        print("The number is between 0 and 100.")
+    else:
+        print("The number is greater than 100.")
+else:
+    print("The number is negative.")
+# Check if the number is not equal to 0
+number = int(input("Enter a number: "))
+
+if not number == 0:
+    print("The number is not zero.")
+else:
+    print("The number is zero.")
+# Check if the number is not equal to 0
+number = int(input("Enter a number: "))
+
+if not number == 0:
+    print("The number is not zero.")
+else:
+    print("The number is zero.")
+# Check if the number is not equal to 0
+number = int(input("Enter a number: "))
+
+if not number == 0:
+    print("The number is not zero.")
+else:
+    print("The number is zero.")

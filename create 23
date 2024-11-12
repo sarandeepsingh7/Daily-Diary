@@ -1,0 +1,216 @@
+NumPy (Numerical Python)
+NumPy is a library that provides support for large, multi-dimensional arrays and matrices, as well as a collection of mathematical functions to operate on these arrays. It's fundamental for scientific computing and serves as the base for many other data science libraries like Pandas.
+
+Installing NumPy
+bash
+Copy code
+pip install numpy
+Key Features of NumPy:
+Efficient handling of large multi-dimensional arrays.
+Supports a wide range of mathematical operations, including linear algebra, statistical operations, and random number generation.
+Vectorization: Perform element-wise operations on arrays without using loops, leading to more concise and faster code.
+Creating Arrays in NumPy
+NumPy arrays are the core object of NumPy. They are more efficient than Python lists for storing and manipulating numerical data.
+
+python
+Copy code
+import numpy as np
+
+# Create a NumPy array from a list
+arr = np.array([1, 2, 3, 4, 5])
+print(arr)  # Output: [1 2 3 4 5]
+
+# Create a 2D array (Matrix)
+arr_2d = np.array([[1, 2, 3], [4, 5, 6]])
+print(arr_2d)
+# Output:
+# [[1 2 3]
+#  [4 5 6]]
+Array Operations
+NumPy arrays support element-wise operations, which are efficient and concise.
+
+python
+Copy code
+# Element-wise arithmetic operations
+arr = np.array([1, 2, 3, 4, 5])
+print(arr + 2)      # Output: [3 4 5 6 7]
+print(arr * 3)      # Output: [ 3  6  9 12 15]
+print(arr / 5)      # Output: [0.2 0.4 0.6 0.8 1. ]
+
+# Element-wise square root
+print(np.sqrt(arr))  # Output: [1.         1.41421356 1.73205081 2.         2.23606798]
+Array Methods and Attributes
+NumPy arrays come with many useful methods and attributes.
+
+python
+Copy code
+# Shape and size of an array
+print(arr.shape)  # Output: (5,) -> 5 elements in the array
+print(arr.ndim)   # Output: 1 -> 1-dimensional array
+print(arr.size)   # Output: 5 -> Total number of elements
+
+# Reshape an array
+reshaped = arr.reshape(1, 5)
+print(reshaped)  # Output: [[1 2 3 4 5]]
+
+# Array statistics
+print(np.mean(arr))  # Output: 3.0 (Mean of the array)
+print(np.median(arr)) # Output: 3.0 (Median of the array)
+print(np.std(arr))    # Output: 1.4142135623730951 (Standard Deviation)
+Random Number Generation
+NumPy includes a random module that allows you to generate random numbers, which is useful for simulations, testing, and machine learning.
+
+python
+Copy code
+# Generate random numbers
+random_array = np.random.rand(3, 3)  # 3x3 array of random numbers between 0 and 1
+print(random_array)
+
+# Generate random integers
+random_integers = np.random.randint(1, 10, size=(2, 3))  # 2x3 array of random integers between 1 and 9
+print(random_integers)
+2. Pandas (Data Analysis and Manipulation)
+Pandas is a powerful library built on top of NumPy that is used for data manipulation and analysis. It introduces two main data structures: Series and DataFrame. Series is a one-dimensional labeled array, while DataFrame is a two-dimensional labeled data structure.
+
+Installing Pandas
+bash
+Copy code
+pip install pandas
+Key Features of Pandas:
+DataFrame: A table-like structure, similar to a spreadsheet or SQL table, where you can store heterogeneous data.
+Handling missing data: Provides simple ways to identify, filter, and manipulate missing data.
+Data alignment: Easy alignment of data from different sources.
+Powerful grouping and aggregation: groupby operations for data aggregation.
+Creating DataFrames and Series in Pandas
+python
+Copy code
+import pandas as pd
+
+# Create a Series (1D)
+s = pd.Series([1, 2, 3, 4, 5])
+print(s)
+# Output:
+# 0    1
+# 1    2
+# 2    3
+# 3    4
+# 4    5
+# dtype: int64
+
+# Create a DataFrame (2D)
+data = {
+    'Name': ['Alice', 'Bob', 'Charlie', 'David'],
+    'Age': [24, 27, 22, 32],
+    'City': ['New York', 'Los Angeles', 'Chicago', 'Houston']
+}
+df = pd.DataFrame(data)
+print(df)
+# Output:
+#       Name  Age         City
+# 0    Alice   24     New York
+# 1      Bob   27  Los Angeles
+# 2  Charlie   22      Chicago
+# 3    David   32      Houston
+Reading and Writing Data
+Pandas can read and write data from many different formats like CSV, Excel, JSON, and SQL.
+
+python
+Copy code
+# Read data from CSV
+df = pd.read_csv('data.csv')
+
+# Write data to CSV
+df.to_csv('output.csv', index=False)  # index=False to not write row indices
+
+# Read Excel file
+df_excel = pd.read_excel('data.xlsx')
+
+# Read JSON file
+df_json = pd.read_json('data.json')
+Data Inspection and Manipulation
+Viewing Data: You can view the top or bottom rows using head() and tail().
+python
+Copy code
+# Show first 3 rows
+print(df.head(3))
+
+# Show last 2 rows
+print(df.tail(2))
+Selecting Columns: You can access columns as attributes or by name.
+python
+Copy code
+# Select a single column
+print(df['Name'])
+
+# Select multiple columns
+print(df[['Name', 'Age']])
+Filtering Data: Use boolean indexing to filter rows.
+python
+Copy code
+# Filter rows based on conditions
+print(df[df['Age'] > 25])
+
+# Multiple conditions (AND)
+print(df[(df['Age'] > 25) & (df['City'] == 'Houston')])
+
+# Multiple conditions (OR)
+print(df[(df['Age'] > 25) | (df['City'] == 'Chicago')])
+Missing Data Handling
+Pandas provides functions for dealing with missing or NaN values.
+
+python
+Copy code
+# Create DataFrame with missing values
+df_missing = pd.DataFrame({
+    'Name': ['Alice', 'Bob', 'Charlie', None],
+    'Age': [24, None, 22, 32],
+    'City': ['New York', 'Los Angeles', None, 'Houston']
+})
+
+# Check for missing values
+print(df_missing.isnull())
+
+# Drop rows with missing values
+df_cleaned = df_missing.dropna()
+print(df_cleaned)
+
+# Fill missing values with a specified value
+df_filled = df_missing.fillna('Unknown')
+print(df_filled)
+Grouping and Aggregating Data
+You can group data by a column and perform aggregation functions like sum(), mean(), count(), etc.
+
+python
+Copy code
+# Group by 'City' and calculate the mean age for each group
+grouped = df.groupby('City')['Age'].mean()
+print(grouped)
+Sorting Data
+You can sort data by columns using sort_values().
+
+python
+Copy code
+# Sort by 'Age' in ascending order
+df_sorted = df.sort_values(by='Age')
+print(df_sorted)
+
+# Sort by 'Age' in descending order
+df_sorted_desc = df.sort_values(by='Age', ascending=False)
+print(df_sorted_desc)
+NumPy and Pandas Together
+In data science, NumPy and Pandas are often used together to leverage the advantages of both libraries. Pandas DataFrames rely on NumPy arrays for their underlying data structures, so you can easily convert between them.
+
+python
+Copy code
+import numpy as np
+import pandas as pd
+
+# Convert a NumPy array to a Pandas DataFrame
+arr = np.array([[1, 2, 3], [4, 5, 6]])
+df_from_array = pd.DataFrame(arr, columns=['A', 'B', 'C'])
+print(df_from_array)
+
+# Convert a Pandas DataFrame to a NumPy array
+df = pd.DataFrame({'X': [1, 2, 3], 'Y': [4, 5, 6]})
+array_from_df = df.values  # Returns a 2D NumPy array
+print(array_from_df)

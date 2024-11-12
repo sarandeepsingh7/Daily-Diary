@@ -1,0 +1,177 @@
+File Handling in Python
+File handling is an essential part of programming, allowing you to read, write, and manipulate files on your computer. In Python, file handling is simple and powerful, using built-in functions and methods. Below, I'll walk you through the basics of file handling in Python: opening files, reading from files, writing to files, and working with file modes.
+
+1. Opening a File
+To work with a file, you first need to open it using the open() function. This function returns a file object that provides methods for reading and writing.
+
+Syntax:
+python
+Copy code
+file_object = open('filename', 'mode')
+'filename': The name of the file (it can be a path if the file is not in the current directory).
+'mode': Specifies the mode in which the file is opened. Common modes are:
+'r': Read (default mode, opens the file for reading).
+'w': Write (opens the file for writing, creates the file if it doesn't exist, or truncates it if it does).
+'a': Append (opens the file for appending content at the end).
+'b': Binary mode (used with 'rb' or 'wb' to read/write binary files).
+'x': Exclusive creation (creates a new file, fails if the file already exists).
+'t': Text mode (default, used for reading/writing text files).
+Example of opening a file:
+python
+Copy code
+# Open a file in read mode
+file = open('example.txt', 'r')
+2. Reading from a File
+Once you open a file, you can read its content using various methods.
+
+Methods to read from a file:
+read(): Reads the entire file.
+readline(): Reads one line at a time.
+readlines(): Reads all lines into a list (each line as an element).
+Example:
+python
+Copy code
+# Open file for reading
+file = open('example.txt', 'r')
+
+# Read the entire file content
+content = file.read()
+print(content)
+
+# Read the file line by line
+file.seek(0)  # Reset the pointer to the beginning
+line1 = file.readline()
+line2 = file.readline()
+print(line1)
+print(line2)
+
+# Read all lines into a list
+file.seek(0)  # Reset the pointer
+lines = file.readlines()
+print(lines)
+
+file.close()  # Don't forget to close the file
+3. Writing to a File
+To write to a file, you open it in write ('w') or append ('a') mode.
+
+'w': This mode will overwrite the file if it already exists. If the file doesn’t exist, it will create a new one.
+'a': This mode will append to the file if it exists, or create a new one if it doesn't.
+Example:
+python
+Copy code
+# Open file for writing (this will overwrite the content)
+file = open('example.txt', 'w')
+file.write("Hello, this is a test.\n")
+file.write("We are writing to this file.")
+file.close()
+
+# Open file for appending
+file = open('example.txt', 'a')
+file.write("\nThis text is appended.")
+file.close()
+4. Using Context Manager (with statement)
+Python provides a context manager (with statement) to handle file opening and closing automatically, ensuring that the file is closed after the block of code is executed, even if an error occurs. This is a best practice for file handling.
+
+Example:
+python
+Copy code
+# Using context manager to open and read a file
+with open('example.txt', 'r') as file:
+    content = file.read()
+    print(content)
+
+# Using context manager to write to a file
+with open('example.txt', 'w') as file:
+    file.write("This file is handled with context manager.")
+The advantage of using with is that you don’t need to call file.close() explicitly — it is done automatically.
+
+5. File Modes (Detailed Explanation)
+Here are some of the most commonly used file modes:
+
+'r': Read (default mode). Opens the file for reading.
+If the file doesn’t exist, raises a FileNotFoundError.
+'w': Write. Opens the file for writing, creates the file if it doesn’t exist.
+If the file exists, it truncates (overwrites) it.
+'a': Append. Opens the file for writing but appends to it if the file exists.
+Creates the file if it doesn’t exist.
+'b': Binary. This mode is used for binary files, e.g., images or executables.
+'t': Text. Default mode, used for text files.
+'x': Exclusive creation. Fails if the file already exists.
+'r+': Read and write. Opens the file for both reading and writing.
+The file must exist.
+6. Working with Binary Files
+To work with binary files, you use the b mode (rb, wb, etc.).
+
+Example of reading a binary file:
+python
+Copy code
+# Reading a binary file
+with open('image.jpg', 'rb') as file:
+    data = file.read()
+    print(data)
+Example of writing to a binary file:
+python
+Copy code
+# Writing to a binary file
+with open('output.jpg', 'wb') as file:
+    file.write(data)
+7. File Pointer and Seek
+The file pointer is the cursor that determines where the next read or write will happen. By default, the file pointer is at the beginning of the file when opened in read mode.
+
+You can move the pointer using seek() to navigate through the file.
+
+Example:
+python
+Copy code
+# Using seek() to move the pointer
+with open('example.txt', 'r') as file:
+    print(file.read(5))  # Read first 5 characters
+    file.seek(0)         # Move the pointer back to the beginning
+    print(file.read(5))  # Read the first 5 characters again
+8. File Operations: Rename, Delete, and More
+You can perform other operations on files, such as renaming, deleting, or checking if a file exists, using functions from the os module.
+
+Example:
+python
+Copy code
+import os
+
+# Renaming a file
+os.rename('old_name.txt', 'new_name.txt')
+
+# Deleting a file
+os.remove('file_to_delete.txt')
+
+# Checking if a file exists
+if os.path.exists('example.txt'):
+    print("File exists!")
+else:
+    print("File not found.")
+9. File Permissions
+You can change the permissions of a file (read, write, execute) using the os.chmod() function.
+
+python
+Copy code
+import os
+
+# Setting the file to be readable and writable
+os.chmod('example.txt', 0o666)  # Read and write permissions for all users
+
+# Setting the file to be read-only
+os.chmod('example.txt', 0o444)  # Read-only permissions
+10. Example: Reading and Writing with Context Manager
+Here's a complete example that combines reading, writing, and using the context manager:
+
+python
+Copy code
+# Writing to a file using context manager
+with open('example.txt', 'w') as file:
+    file.write("This is an example of file handling in Python.\n")
+    file.write("We can write multiple lines like this.\n")
+
+# Reading the file after writing
+with open('example.txt', 'r') as file:
+    content = file.read()
+    print("File content after writing:")
+    print(content)
+Summary of Key Functions and Methods

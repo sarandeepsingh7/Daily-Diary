@@ -1,0 +1,68 @@
+Classes in Python
+A class is a blueprint for creating objects. It defines a set of attributes and behaviors (methods) that the created objects will have. Think of it like a template for creating instances of objects.
+
+Syntax for Defining a Class:
+A class is defined using the class keyword, followed by the class name and a colon. Inside the class, you define methods and attributes (variables) that belong to the class.
+
+pythonclass Dog:
+    # Constructor method to initialize object attributes
+    def __init__(self, name, age):
+        self.name = name  # Instance variable
+        self.age = age    # Instance variable
+
+    # Method to describe the dog
+    def bark(self):
+        print(f"{self.name} says woof!")
+
+    # Method to get the dog's age
+    def get_age(self):
+        return self.age
+Objects in Python
+An object is an instance of a class. When you create an object from a class, it inherits all the attributes and methods defined in the class. You can think of an object as an actual entity that you can interact with, based on the class template.
+
+Creating an Object:
+To create an object, you instantiate a class by calling it like a function.# Creating objects (instances of the Dog class)
+dog1 = Dog("Buddy", 3)
+dog2 = Dog("Lucy", 5)
+
+# Accessing attributes
+print(dog1.name)  # Output: Buddy
+print(dog2.age)   # Output: 5
+
+# Calling methods on the object
+dog1.bark()  # Output: Buddy says woof!
+dog2.bark()  # Output: Lucy says woof!
+class Car:
+    def __init__(self, make, model, year):
+        self.make = make
+        self.model = model
+        self.year = year
+
+    def display_info(self):
+        print(f"{self.year} {self.make} {self.model}")
+
+# Creating a Car object
+my_car = Car("Toyota", "Corolla", 2020)
+my_car.display_info()  # Output: 2020 Toyota Corolla
+ Instance Variables vs. Class Variables
+Instance Variables: These are specific to an object (instance). They are defined inside the __init__ method using self.
+Class Variables: These are shared by all instances of the class. They are defined directly inside the class but outside any methods.class Person:
+    species = "Homo sapiens"  # Class variable
+
+    def __init__(self, name, age):
+        self.name = name  # Instance variable
+        self.age = age    # Instance variable
+
+# Creating two Person objects
+person1 = Person("Alice", 30)
+person2 = Person("Bob", 25)
+
+print(person1.species)  # Output: Homo sapiens
+print(person2.species)  # Output: Homo sapiens
+
+# Changing class variable for the class
+Person.species = "Homo erectus"
+
+print(person1.species)  # Output: Homo erectus
+print(person2.species)  # Output: Homo erectus
+
